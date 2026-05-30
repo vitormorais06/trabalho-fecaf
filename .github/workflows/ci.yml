@@ -28,4 +28,4 @@ jobs:
     # Passo 4: Executa a pasta de testes para verificar se o código está quebrado
     - name: Rodar Testes
       run: |
-        pytest src/tests/
+        pytest
