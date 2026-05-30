@@ -17,6 +17,14 @@ def init_db():
     conn.commit() 
     conn.close()  
 
+    c.execute('''CREATE TABLE IF NOT EXISTS tasks
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  title TEXT NOT NULL,
+                  description TEXT, 
+                  status TEXT NOT NULL, 
+                  priority TEXT NOT NULL,
+                  due_date TEXT NOT NULL)''') # <-- NOVO CAMPO
+
 
 
 
@@ -36,21 +44,19 @@ def index():
 #criar tarefa
 @app.route('/add', methods=['POST'])
 def add_task():
-    """Recebe os dados do formulário HTML e insere no banco de dados."""
-    # Capturando os valores digitados no formulário
     title = request.form['title']
     description = request.form['description']
     status = request.form['status']
     priority = request.form['priority']
+    due_date = request.form['due_date'] # <-- NOVO CAMPO
     
     conn = sqlite3.connect('logistics.db')
     c = conn.cursor()
-    c.execute("INSERT INTO tasks (title, description, status, priority) VALUES (?, ?, ?, ?)",
-              (title, description, status, priority))
+    c.execute("INSERT INTO tasks (title, description, status, priority, due_date) VALUES (?, ?, ?, ?, ?)",
+              (title, description, status, priority, due_date)) # <-- ADICIONADO AQUI
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
-
 
 
 #deletar a tarefa
