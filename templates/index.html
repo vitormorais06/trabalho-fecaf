@@ -2,38 +2,73 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>TechFlow Logistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow Logistics - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Gestão de Entregas - TechFlow Solutions</h2>
+<body class="bg-light">
     
-    <form action="/add" method="POST">
-        <input type="text" name="title" placeholder="Título da Carga" required>
-        <input type="text" name="description" placeholder="Destino" required>
-        <select name="status">
-            <option value="A Fazer">A Fazer</option>
-            <option value="Em Progresso">Em Progresso</option>
-            <option value="Concluído">Concluído</option>
-        </select>
-        <select name="priority">
-            <option value="Alta">Alta</option>
-            <option value="Média">Média</option>
-            <option value="Baixa">Baixa</option>
-        </select>
-        <button type="submit">Cadastrar Carga</button>
-    </form>
-    <br>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Gestão de Entregas - TechFlow Solutions</h2>
+        
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <form action="/add" method="POST" class="row g-3">
+                    
+                    <div class="col-md-3">
+                        <input type="text" name="title" class="form-control" placeholder="Título da Carga/Tarefa" required>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <input type="text" name="description" class="form-control" placeholder="Destino / Descrição" required>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <select name="status" class="form-select">
+                            <option value="A Fazer">A Fazer</option>
+                            <option value="Em Progresso">Em Progresso</option>
+                            <option value="Concluído">Concluído</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <select name="priority" class="form-select">
+                            <option value="Alta">Alta</option>
+                            <option value="Média">Média</option>
+                            <option value="Baixa">Baixa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary w-100">+</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <table border="1">
-        <tr>
-            <th>ID</th><th>Carga</th><th>Destino</th><th>Status</th><th>Prioridade</th>
-        </tr>
-        {% for task in tasks %}
-        <tr>
-            <td>{{ task[0] }}</td><td>{{ task[1] }}</td><td>{{ task[2] }}</td>
-            <td>{{ task[3] }}</td><td>{{ task[4] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <table class="table table-striped table-hover shadow-sm bg-white text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Carga</th>
+                    <th>Destino</th>
+                    <th>Status</th>
+                    <th>Prioridade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task[0] }}</td> <td>{{ task[1] }}</td> <td>{{ task[2] }}</td> <td><span class="badge bg-secondary">{{ task[3] }}</span></td> 
+                    
+                    <td>{{ task[4] }}</td> <td>
+                        <a href="/delete/{{ task[0] }}" class="btn btn-danger btn-sm">Finalizar/Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
 </body>
 </html>
