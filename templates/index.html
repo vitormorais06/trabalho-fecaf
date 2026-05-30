@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>TechFlow Logistics</title>
+</head>
+<body>
+    <h2>Gestão de Entregas - TechFlow Solutions</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>Carga</th><th>Destino</th><th>Status</th><th>Prioridade</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task[0] }}</td><td>{{ task[1] }}</td><td>{{ task[2] }}</td>
+            <td>{{ task[3] }}</td><td>{{ task[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
