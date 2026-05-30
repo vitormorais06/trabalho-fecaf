@@ -8,22 +8,16 @@ def init_db():
     """Cria o banco de dados e a tabela de tarefas caso não existam."""
     conn = sqlite3.connect('logistics.db')
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS tasks
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                  title TEXT NOT NULL,
-                  description TEXT, 
-                  status TEXT NOT NULL, 
-                  priority TEXT NOT NULL)''')
-    conn.commit() 
-    conn.close()  
-
+    # Criação da tabela já com a coluna due_date (Único bloco CREATE TABLE)
     c.execute('''CREATE TABLE IF NOT EXISTS tasks
                  (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                   title TEXT NOT NULL,
                   description TEXT, 
                   status TEXT NOT NULL, 
                   priority TEXT NOT NULL,
-                  due_date TEXT NOT NULL)''') # <-- NOVO CAMPO
+                  due_date TEXT NOT NULL)''')
+    conn.commit()
+    conn.close()
 
 
 
