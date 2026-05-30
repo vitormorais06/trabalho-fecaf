@@ -6,6 +6,24 @@
 </head>
 <body>
     <h2>Gestão de Entregas - TechFlow Solutions</h2>
+    
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Título da Carga" required>
+        <input type="text" name="description" placeholder="Destino" required>
+        <select name="status">
+            <option value="A Fazer">A Fazer</option>
+            <option value="Em Progresso">Em Progresso</option>
+            <option value="Concluído">Concluído</option>
+        </select>
+        <select name="priority">
+            <option value="Alta">Alta</option>
+            <option value="Média">Média</option>
+            <option value="Baixa">Baixa</option>
+        </select>
+        <button type="submit">Cadastrar Carga</button>
+    </form>
+    <br>
+
     <table border="1">
         <tr>
             <th>ID</th><th>Carga</th><th>Destino</th><th>Status</th><th>Prioridade</th>
